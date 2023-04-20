@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   // be sure to include its associated Products
   Category.findAll()
     .then((searchResponse) => {
-      searchResponse.json(categoryData);
+      res.json(searchResponse);
     })
     .catch((err) => res.json(err));;
 });
