@@ -6,26 +6,59 @@ const { Category, Product } = require('../../models');
 router.get('/', (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  Category.findAll().then((categoryData) => {
-    res.json(categoryData);
-  });
+  Category.findAll()
+    .then((searchResponse) => {
+      searchResponse.json(categoryData);
+    })
+    .catch((err) => res.json(err));;
 });
 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
+  Category.findByPk(req.params.id)
+    .then((searchParams) => {
+      res.json(searchParams)
+    })
+    .catch((err) => res.json(err));;
 });
 
 router.post('/', (req, res) => {
   // create a new category
+  Category.create(req.body)
+    .then((postParams) => {
+      res.json(postParams)
+    })
+    .catch((err) => res.json(err));
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  Category.update({
+    category_name: req.body.category_name
+  },
+    {
+      where: {
+        id: req.params.id
+      }
+    })
+    .then((updateParams) => {
+      res.json(updateParams);
+    })
+    .catch((err) => res.json(err));
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((deleteParams) => {
+      res.json(deleteParams);
+    })
+    .catch((err) => res.json(err));
 });
 
 module.exports = router;
