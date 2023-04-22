@@ -6,7 +6,19 @@ This e-commerce backend was built for an imagined online retailer, who wished to
 
 ## Installation
 
-After downloading, run `npm i` to install dependencies. Then run `npm run seed` to seed the database.
+After downloading, run:
+
+```
+npm i
+```
+
+to install dependencies. Then run:
+
+```
+npm run seed
+```
+
+to seed the database.
 
 ## Usage
 
@@ -18,14 +30,15 @@ Each of the follow API routes accept CRUD operations:
 
 - GET: Get all existing products.
 - POST: Create a new product. Request must be structured as:
-  ```
-  {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  ```
+
+```
+{
+product_name: "Basketball",
+price: 200.00,
+stock: 3,
+tagIds: [1, 2, 3, 4]
+}
+```
 
 **/api/products/:id**
 
@@ -40,9 +53,9 @@ Each of the follow API routes accept CRUD operations:
 - GET: Get all existing categories.
 - POST: Create a new category. Request must be structured as:
 
-  ```
-  {"category_name": "name"}
-  ```
+```
+{"category_name": "name"}
+```
 
 **/api/categories/:id**
 
@@ -56,9 +69,10 @@ Each of the follow API routes accept CRUD operations:
 
 - GET: Get a list of all available tags.
 - POST: Create a tag. Request must be structured as:
-  ```
-  {"tag_name": "name"}
-  ```
+
+```
+{"tag_name": "name"}
+```
 
 **/api/tags/:id**
 
@@ -67,6 +81,8 @@ Each of the follow API routes accept CRUD operations:
 - DELETE: Delete tag with specified ID.
 
 ## Video Demo
+
+[Google Drive Link](https://drive.google.com/file/d/1DCgTP7MPipKIFzDkrFjXkryWcsag2f6Q/view?usp=sharing)
 
 ## License
 
