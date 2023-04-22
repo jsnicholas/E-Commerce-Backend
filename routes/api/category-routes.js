@@ -6,21 +6,25 @@ const { Category, Product } = require('../../models');
 router.get('/', (req, res) => {
   // find all categories
   // be sure to include its associated Products
-  Category.findAll()
-    .then((searchResponse) => {
-      res.json(searchResponse);
-    })
-    .catch((err) => res.json(err));;
+  try {
+    Category.findAll()
+      .then((searchResponse) => {
+        res.json(searchResponse);
+      })
+  }
+  catch (err) { res.json(err) };
 });
 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
-  Category.findByPk(req.params.id)
-    .then((searchParams) => {
-      res.json(searchParams)
-    })
-    .catch((err) => res.json(err));;
+  try {
+    Category.findByPk(req.params.id)
+      .then((searchParams) => {
+        res.json(searchParams)
+      })
+  }
+  catch (err) { res.json(err) };
 });
 
 router.post('/', (req, res) => {
@@ -30,40 +34,46 @@ router.post('/', (req, res) => {
    * @param {string} name - the name of the category that you are creating
    * {"category_name": "name"}
    */
-  Category.create(req.body)
-    .then((postParams) => {
-      res.json(postParams)
-    })
-    .catch((err) => res.json(err));
+  try {
+    Category.create(req.body)
+      .then((postParams) => {
+        res.json(postParams)
+      })
+  }
+  catch (err) { res.json(err) };
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Category.update({
-    category_name: req.body.category_name
-  },
-    {
-      where: {
-        id: req.params.id
-      }
-    })
-    .then((updateParams) => {
-      res.json(updateParams);
-    })
-    .catch((err) => res.json(err));
+  try {
+    Category.update({
+      category_name: req.body.category_name
+    },
+      {
+        where: {
+          id: req.params.id
+        }
+      })
+      .then((updateParams) => {
+        res.json(updateParams);
+      })
+  }
+  catch (err) { res.json(err) };
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
-  Category.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then((deleteParams) => {
-      res.json(deleteParams);
+  try {
+    Category.destroy({
+      where: {
+        id: req.params.id
+      }
     })
-    .catch((err) => res.json(err));
+      .then((deleteParams) => {
+        res.json(deleteParams);
+      })
+  }
+  catch (err) { res.json(err) };
 });
 
 module.exports = router;
