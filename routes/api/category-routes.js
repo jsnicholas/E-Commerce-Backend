@@ -36,8 +36,8 @@ router.post('/', (req, res) => {
    */
   try {
     Category.create(req.body)
-      .then((postParams) => {
-        res.json(postParams)
+      .then(() => {
+        res.json(`Created category ${req.body.category_name}`)
       })
   }
   catch (err) { res.json(err) };
@@ -54,8 +54,8 @@ router.put('/:id', (req, res) => {
           id: req.params.id
         }
       })
-      .then((updateParams) => {
-        res.json(updateParams);
+      .then(() => {
+        res.json(`Updated category with id of ${req.params.id} to ${req.body.category_name}`);
       })
   }
   catch (err) { res.json(err) };
@@ -69,8 +69,8 @@ router.delete('/:id', (req, res) => {
         id: req.params.id
       }
     })
-      .then((deleteParams) => {
-        res.json(deleteParams);
+      .then(() => {
+        res.json(`Deleted category with id of ${req.params.id}`);
       })
   }
   catch (err) { res.json(err) };

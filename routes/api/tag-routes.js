@@ -31,8 +31,8 @@ router.post('/', (req, res) => {
   // create a new tag
   try {
     Tag.create(req.body)
-      .then((postData) => {
-        res.json(postData)
+      .then(() => {
+        res.json(`Created tag '${req.body.tag_name}'`)
       })
   }
   catch (err) { res.json(err) }
@@ -41,7 +41,17 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
   try {
-    Tag.put()
+    Tag.update({
+      tag_name: req.body.tag_name
+    },
+      {
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(() => {
+        res.json(`Tag id ${req.params.id} updated to ${req.body.tag_name}`);
+      })
   }
   catch (err) { res.json(err) }
 });
@@ -50,9 +60,13 @@ router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
 
   try {
-    Tag.delete(req.params.id)
-      .then((deleteRequest) => {
-        res.json(deleteRequest)
+    Tag.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(() => {
+        res.json(`Tag id ${req.params.id} deleted.`)
       })
   } catch (err) { res.json(err) }
 });

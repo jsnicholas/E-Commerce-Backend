@@ -114,8 +114,8 @@ router.delete('/:id', (req, res) => {
         id: req.params.id
       }
     })
-      .then((deleteParams) => {
-        res.json(deleteParams);
+      .then(() => {
+        res.json(`Deleted product with id of ${req.params.id}`);
       })
   }
   catch (err) { res.json(err) };
